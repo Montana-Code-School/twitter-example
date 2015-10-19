@@ -25,40 +25,21 @@ app.options("*", function(req, res) {
 });
 
 var T = new Twit({
-	consumer_key: process.env.CONSUMER_KEY,
-	consumer_secret: process.env.CONSUMER_SECRET,
-	access_token: process.env.ACCESS_TOKEN,
-	access_token_secret: process.env.ACCESS_TOKEN_SECRET
+	consumer_key:
+	consumer_secret:
+	access_token:
+	access_token_secret:
 });
 
 var fetchTweets = function(req, res){
-  var twitterHandle = req.params.twitterHandle;
-
-  T.get('statuses/user_timeline', { screen_name: twitterHandle, count: 10 }, function(err, data, response) {
-
-    res.send(data);
-
-  });
-
-};
-
-var fetchKeyword = function(req,res){
-  var keyword = req.params.keyword;
-  
-  T.get('search/tweets', { q: keyword +' since:2011-11-11', count: 10 }, function(err, data, response) {
-    console.log(data)
-  });
+  var twitterHandle = ;
 
 };
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.use('/api/:twitterHandle', fetchTweets);
-app.use('/api/word/:keyword', fetchKeyword);
 
-app.get('/', function(req, res){
-	res.sendFile('index.html');
-})
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
